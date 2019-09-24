@@ -1,0 +1,284 @@
+﻿fieldset.border {
+    border: 1px solid #ddd !important;
+    padding: 0 1.4em 0 1.4em !important;
+    margin: 0 0 15px 0 !important;
+    border-radius: 8px;
+}
+
+legend.border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width: auto;
+    padding: 0 10px;
+    border-bottom: none;
+}
+
+.red-label {
+    color: red;
+    font-weight: bold;
+}
+
+.subheading-row {
+    background-image: linear-gradient(to bottom, #d9edf7 0%, #b9def0 100%);
+    background-repeat: repeat-x;
+    background-color: #9acfea;
+    font-weight: 300;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.hidden {
+    display: none;
+}
+
+.control-label, .form-control, .radio-inline, .radio {
+    font-size: 13px;
+}
+
+.right-margin-10 {
+    margin-right: 10px;
+}
+
+.remove-padding {
+    padding: 0px 0px 0px 0px !important;
+}
+
+.remove-padding-right {
+    padding-right: 0px !important;
+}
+
+.remove-padding-left {
+    padding-left: 0px !important;
+}
+
+.calc-information {
+    font-size: 12px;
+}
+
+input[type="text"].form-control, select.form-control {
+    max-width: 300px;
+}
+
+.input-group input[type="text"].form-control {
+    max-width: inherit;
+}
+
+
+.Result {
+    text-align: right;
+    background-color: lightyellow !important;
+    border-bottom: thin groove Yellow;
+}
+
+.right-align-button {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+}
+
+.alert {
+    padding: 10px !important;
+}
+
+.remove-margin {
+    margin: 0px 0px 0px 0px !important;
+}
+
+.tab-content > .tab-pane > .panel-body {
+    padding-bottom: 0px;
+}
+
+.tab-content > .panel-body {
+    padding-bottom: 0px;
+}
+
+.form-group {
+    margin-bottom: 8px;
+}
+
+@media screen and (max-width: 767px) {
+
+    .xs-remove-padding {
+        padding: 0px 0px 0px 0px !important;
+    }
+
+
+    .panel-body {
+        padding: 10px;
+    }
+
+    fieldset.border {
+        padding: 0 10px 10px 10px !important;
+    }
+
+    .Result {
+        display: inline-block;
+    }
+}
+
+
+/*@media (max-width: 420px) {*/
+
+
+.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
+    margin-top: 0;
+    margin-left: 0px;
+}
+/*}*/
+
+.home-main p {
+    font-family: "Gotham SSm A","Gotham SSm B","Helvetica Neueu",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    font-size: 17px;
+    margin-bottom: 0px;
+}
+
+    /*.home-main .panel-body p {
+    margin-bottom: 10px;
+}*/
+
+    .home-main p strong {
+        font-family: "Gotham SSm A","Gotham SSm B","Helvetica Neueu",Helvetica,Arial,sans-serif;
+        font-weight: 500;
+        letter-spacing: .3px;
+    }
+
+.home-main h2 {
+    margin-top: 0px;
+}
+
+.home-main {
+    margin-top: 20px;
+}
+
+
+@media (min-width: 1200px) {
+    .container {
+        margin-left: 0px;
+    }
+}
+
+.numeric-textbox {
+    text-align: right;
+}
+
+.select2-container--bootstrap .select2-results > .select2-results__options {
+    max-height: 500px !important;
+}
+
+
+/*Radiology Calculator*/
+
+.table-result {
+    width: 100%;
+}
+
+    .table-result tbody td {
+        padding: 5px;
+    }
+
+.table-rounded {
+    border: none;
+    width: 100%;
+}
+
+    .table-rounded tbody td {
+        color: #333;
+        border: none;
+        border-top: solid 1px #ddd;
+        border-left: solid 1px #ddd;
+        background-color: #f5f5f5;
+        padding: 10px;
+    }
+
+.row-span-col {
+    border-radius: 10px 0 0 10px;
+    width: 25%;
+    border-left: none !important;
+}
+
+.single-col {
+    border-radius: 10px !important;
+    border-left: none !important;
+}
+
+.seq-col {
+    width: 5%;
+}
+
+.table-rounded tbody tr:first-child td:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+.rounded-col {
+    border-radius: 0 10px 10px 0 !important;
+    width: 75%;
+}
+
+.table-rounded tbody tr:last-child td:last-child {
+    border-radius: 0 0px 10px 0;
+}
+
+.table-rounded tbody tr:first-child td {
+    border-top: none;
+}
+
+.popover {
+    max-width: 600px;
+    overflow: auto;
+    max-height: 400px;
+}
+
+#popover-content {
+    font-size: 12px;
+    padding-bottom: 25px;
+}
+
+    #popover-content table tbody td {
+        padding: 2px 2px 2px 10px;
+    }
+
+    #popover-content table thead th {
+        background-color: #ddd;
+        font-weight: bold;
+        padding: 2px 2px 2px 10px;
+    }
+
+    #popover-content table tbody td:nth-child(2),
+     #popover-content table tbody td:nth-child(5)  {
+        text-align: center;
+    }
+
+    #popover-content table tbody tr:nth-child(even) {
+        background: #f5f5f5;
+    }
+    #popover-content table tbody td.grayhighlight {
+        background-color: lightgray;
+    }
+
+    #popover-content table tbody tr:nth-child(odd) {
+        background: #FFF;
+    }
+
+.alt {
+    background-color: #f5f5f5;
+}
+@media print {
+    #popover-content table tbody td:nth-child(2),
+     #popover-content table tbody td:nth-child(5)  {
+        text-align: left;
+    }
+    #popover-content table tbody td.grayhighlight,
+    #popover-content table thead th.grayhighlight {
+        -webkit-print-color-adjust: exact;
+        background-color: lightgray !important;
+    }
+
+     #popover-content table thead th:nth-child(3) {
+        width:10% !important;
+    }
+    #popover-content table tbody td:nth-child(3) {
+        text-align: left;
+    }
+}

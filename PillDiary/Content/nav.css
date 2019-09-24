@@ -1,0 +1,355 @@
+﻿
+
+/* custom template */
+html, body {
+    height: 100%;
+    font-family: verdana,arial,sans-serif;
+    color: #555555;
+}
+
+.main-nav {
+    font-family: Arial, sans-serif;
+    background: #1875ce;
+    color: #ffffff;
+    font-size: 35px;
+    padding-top: 20px;
+    border: 0px;
+    border-radius: 0;
+    margin-bottom: 0px;
+    height: 85px;
+    padding-left: 350px;
+}
+
+.tab-content {
+    border: 1px solid #ddd;
+    border-top-color: transparent;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.nav-tabs > li > a {
+    color: #333;
+    background-color: #f5f5f5;
+    border-bottom: 0px;
+}
+
+    .nav-tabs > li > a:hover {
+        color: #333;
+        cursor: default;
+        background-color: #ffffff;
+    }
+
+.box {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+.row.home-content {
+    display: table-row;
+    height: 100%;
+}
+
+.home-sidebar span.badge {
+    background: red;
+    margin-top: -10px;
+    margin-left: 5px;
+    font-family: "Gotham SSm A","Gotham SSm B","Helvetica Neueu",Helvetica,Arial,sans-serif;
+    font-weight: 600;
+}
+
+.home-sidebar a:hover, .home-sidebar a:focus {
+    text-decoration: none;
+}
+/*HP SIDEBAR*/
+li.side-bar-button .menu-imgs {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-repeat: no-repeat;
+}
+
+ul.navbar.navbar-nav.nav-stacked {
+    /*border-right: 1px #E4E5DE solid;*/
+    border-left: 0;
+    border-right: 0;
+}
+
+.home-sidebar {
+    background-color: #1b75cd;
+    max-width: 260px;
+    max-width: 100%;
+    display: block;
+    float: none;
+}
+
+.home-bg {
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    display: table;
+    top: 0;
+}
+
+.home-sidebar .navbar-default .navbar-toggle:hover, .home-sidebar .navbar-default .navbar-toggle:focus {
+    background: transparent !important;
+}
+
+.home-sidebar span.icon-menu {
+    color: #fff;
+    position: relative;
+    left: -8px;
+}
+
+.home-sidebar .navbar-toggle {
+    border: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    border-left: 1px solid #043272;
+    padding-left: 20px;
+    border-radius: 0px;
+    padding-top: 13px;
+    padding-right: 3px;
+}
+
+.home-sidebar .navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFF;
+}
+
+.home-sidebar .navbar-header {
+    background-image: url('images/logo.png');
+    background-repeat: no-repeat;
+}
+
+nav.navbar.navbar-default {
+    background-color: #1B75CD;
+    border: 0px;
+}
+
+ul.navbar.navbar-nav.nav-stacked {
+    padding-left: 0px;
+}
+
+
+/*MAKE MENU VERTICAL*/
+@media (min-width: 992px) {
+    .navbar-collapse {
+        height: auto;
+        border-top: 0;
+        box-shadow: none;
+        max-height: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+        .navbar-collapse.collapse {
+            display: block !important;
+            width: auto !important;
+            padding-bottom: 0;
+            overflow: visible !important;
+        }
+
+        .navbar-collapse.in {
+            overflow-x: visible;
+        }
+
+    .navbar {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .navbar-nav,
+    .navbar-nav > li,
+    .navbar-left,
+    .navbar-right,
+    .navbar-header {
+        float: none !important;
+    }
+
+        .navbar-right .dropdown-menu {
+            left: 0;
+            right: auto;
+        }
+
+    .navbar-collapse .navbar-nav.navbar-right:last-child {
+        margin-right: 0;
+    }
+
+    ul.navbar.navbar-nav.nav-stacked {
+        padding: 0px !important;
+    }
+
+    .home-sidebar-container {
+        background-color: #1b75cd;
+        max-width: 260px;
+        display: table-cell;
+        float: none;
+        vertical-align: top;
+    }
+
+    .home-mobile-msgs {
+        display: none;
+    }
+}
+/*END VERTICAL MENU*/
+@media screen and (max-width: 769px) {
+    .home-sidebar {
+        display: inherit;
+    }
+
+    .home-sidebar {
+        max-width: 100% !important;
+        display: inherit !important;
+    }
+
+    .side-bar-button.sb-logo {
+        display: none;
+    }
+}
+
+/*CUSTOM NAV COLLAPSE*/
+@media screen and (max-width: 991px) {
+    .navbar-header {
+        float: none;
+        height: 85px;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+        .navbar-collapse.collapse {
+            display: none !important;
+        }
+
+    .navbar-nav {
+        float: none !important;
+        margin: 2px -15px 7.5px -15px;
+    }
+
+        .navbar-nav > li {
+            float: none;
+        }
+
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+
+    .collapsing {
+        overflow: hidden !important;
+    }
+    /*END NAV COLLAPSE*/
+
+    #welcome-menu-collapse {
+        border-top: 2px solid #043272;
+    }
+
+    .side-bar-button.selected {
+        background-color: #ffffff !important;
+        color: white !important;
+        border-right: 0px !important;
+    }
+
+    .side-bar-button {
+        border-bottom: 1px solid #022a68 !important;
+    }
+
+    ul li.side-bar-button:nth-last-child(1) {
+        border-bottom: 0px !important;
+    }
+
+    .side-bar-button.selected {
+        border-top: 2px solid #2e81d1 !important;
+    }
+
+    ul.navbar.navbar-nav.nav-stacked a:nth-child(1) li {
+        border-top: 0px;
+    }
+
+    li.side-bar-button a {
+        color: white;
+    }
+}
+
+
+
+/*HP SIDEBAR*/
+
+
+.side-bar-button {
+    border-bottom: 2px solid #022a68;
+    border-top: 2px solid #2e81d1;
+    text-align: left;
+    font-family: "Chronicle SSm A","Chronicle SSm B",Georgia,"Times New Roman",serif;
+    font-weight: 400;
+    color: white;
+    list-style: none;
+}
+
+    .side-bar-button span {
+        color: white;
+        padding-left: 5px;
+    }
+
+    .side-bar-button h5 {
+        display: inline-block;
+        font-size: 20px;
+        color: white;
+    }
+
+
+    .side-bar-button.sb-logo {
+        padding: 0px;
+        border-top: 0px;
+        height: 85px;
+    }
+
+    .side-bar-button.selected {
+        background-color: #ffffff;
+        border-top: 0px;
+        color: black;
+    }
+
+        .side-bar-button.selected span {
+            color: black;
+        }
+
+    .side-bar-button h4 {
+        font-size: 26px;
+        letter-spacing: .75px;
+        margin: 0 0 3px 0;
+        font-family: "Chronicle SSm A","Chronicle SSm B",Georgia,"Times New Roman",serif;
+        font-weight: 400;
+        color: white;
+        padding-top: 3px;
+    }
+
+    .side-bar-button p {
+        margin-bottom: 3px;
+    }
+
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-nav > li > a {
+    padding: 10px;
+    display:block;
+}
