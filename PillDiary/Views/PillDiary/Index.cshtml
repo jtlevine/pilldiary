@@ -198,12 +198,12 @@
                 <!-- main right col -->
                 <div class="home-main col-md-12 col-sm-12 remove-padding">
 
-                    <div class="container" id="content">
+                    <div class="container-fluid" id="content">
 
                         <form id="tapperForm">
-                            <div class="container-fluid" style="padding-top:50px;">
+                            <div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-lg-offset-3 col-md-offset-2" id="formDiv">
+                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 " id="formDiv">
                                         <div class="panel panel-info">
                                             <div class="panel-heading">
                                                 Medications
@@ -220,7 +220,7 @@
                                                     <div class="form-group row">
 
                                                         <div class="col-xs-1"><input type="radio" name="radio1" value="@item.MedicationId" /></div>
-                                                        <div class="col-xs-7" id="@fName">
+                                                        <div class="col-xs-8" id="@fName">
                                                             <div class="col-xs-12">
                                                                 <label class="control-label">
                                                                     @item.MedicationInfo.MedicationName
@@ -233,7 +233,7 @@
                                                                 @item.MedicationInfo.AdditionalInformation
                                                             </div>
                                                         </div>
-                                                        <div class="col-xs-4">
+                                                        <div class="col-xs-3">
                                                             <div id="@sName" class="input-group bootstrap-timepicker timepicker" style="display:none">
                                                                 <input type="text"  class="form-control input-sm" name="@currName" id="@currName" maxlength="5" required>
                                                                 <span class="input-group-addon">
@@ -266,7 +266,7 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-lg-offset-3 col-md-offset-2" id="pillDiv" onload="reload()">
+                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 " id="pillDiv" onload="reload()">
                                         @*@{Html.RenderPartial("_pillHistory", Model);}*@
                                         @*<div class="panel panel-info">
             <div class="panel-heading">

@@ -43,15 +43,13 @@ namespace PillDiary.Repository
             var result = db.Fetch<PillReporting>(string.Format("  select r.*, i.* from PatientMedication m INNER JOIN Patient p ON m.PatientId=p.PatientId inner join MedicationInfo i on m.MedicationId=i.Id inner join[PillReporting] r on p.PatientId = r.patientid and m.MedicationId = r.medicationid  where  p.patientid='{0}' and m.medicationid='{1}' order by pilltimestamp desc", pillDiary.PatientId, pillDiary.MedicationId));
             if (result?.Count > 0)
             {
-                string str = "update PillReporting set pilltimestamp='" + pillDiary.PillTimeStamp + "' where patientid=" + pillDiary.PatientId + " and medicationid=" + pillDiary.MedicationId;
+                string str = "update PillReporting set pilltimestamp='" + pillDiary.PillTimeStamp + "',PillStatus=" + Convert.ToInt16(pillDiary.PillStatus.Value) + " where patientid=" + pillDiary.PatientId + " and medicationid=" + pillDiary.MedicationId;
                 db.Execute(str);
-                //UpdatePill(pillDiary);
             }
             else
             {
-                string str = "INSERT INTO PillReporting VALUES("+ pillDiary.MedicationId + ","+ pillDiary.PatientId + ","+Convert.ToInt16( pillDiary.PillStatus.Value)+", '" + pillDiary.PillTimeStamp + "')" ;
+                string str = "INSERT INTO PillReporting VALUES(" + pillDiary.MedicationId + "," + pillDiary.PatientId + "," + Convert.ToInt16(pillDiary.PillStatus.Value) + ", '" + pillDiary.PillTimeStamp + "')";
                 db.Execute(str);
-                //db.Insert(pillDiary);
             }
 
 
