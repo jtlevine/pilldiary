@@ -73,7 +73,7 @@
             $("#btnTook").click(function () { tookPill(); });
             $("#btnDintTake").click(function () { dintTake(); });
 
-            
+            reload();
             function InsertPill(status) {
                 var symptomControl = $("input[name='radio1']:checked").val();
                 var currName = "currTime" + symptomControl;
@@ -87,9 +87,14 @@
                     data: JSON.stringify(row),
                     contentType: "application/json"
                 })
-                    .done(function (result) {
-                        //do something with the result
+                    .done(function (result) {     
+                       // $("#dvCategoryResults").load('@(Url.Action("GetPillReporting", "PillDiary", null, Request.Url.Scheme))');
+                        reload();
                     });
+            };
+            function reload() {
+                //$('#pillDiv').load("GetPillReporting");
+                $("#pillDiv").load('@(Url.Action("GetPillReporting", "PillDiary", null, Request.Url.Scheme))');
             }
             function tookPill() {
                 var symptomControl = $("input[name='radio1']:checked").val();
@@ -161,7 +166,7 @@
     <div class="home-bg box">
         <div class="container-fluid home-bg remove-padding">
             <!-- top nav -->
-
+            <div id="dvCategoryResults" style="display:none"></div>
             <div class="row home-content">
 
 
@@ -172,14 +177,7 @@
                         <nav class="navbar navbar-default">
                             <!-- Brand and toggle get grouped for better mobile display -->
                             <div class="navbar-header">
-                                <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#welcome-menu-collapse" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-menu">Menu</span>
-                                </button>-->
-
+       
                             </div>
                             <div class="side-bar-button sb-logo hidden-sm">
                                 <a href="#">
@@ -268,51 +266,52 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-lg-offset-3 col-md-offset-2" id="formDiv">
-                                        <div class="panel panel-info">
-                                            <div class="panel-heading">
-                                                Pill Intake History
-                                            </div>
-                                            <div class="panel-body">
-                                                @foreach (var item in Model.PillReportings)
-                                                {
+                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-lg-offset-3 col-md-offset-2" id="pillDiv" onload="reload()">
+                                        @*@{Html.RenderPartial("_pillHistory", Model);}*@
+                                        @*<div class="panel panel-info">
+            <div class="panel-heading">
+                Pill Intake History
+            </div>
+            <div class="panel-body">
+                @foreach (var item in Model.PillReportings)
+                {
 
-                                                    <div class="form-group row">
+                    <div class="form-group row">
 
-                                                        <div class="col-xs-12">
-                                                            <div class="col-xs-12">
-                                                                <label class="control-label">
-                                                                    @item.MedicationInfo.MedicationName
-                                                                </label>
-                                                            </div>
-                                                            <div class="form-inline col-xs-12 ">
-                                                                @if (item.PillStatus.HasValue == false)
-                                                                {
-                                                                    <p>Not Reported</p>
+                        <div class="col-xs-12">
+                            <div class="col-xs-12">
+                                <label class="control-label">
+                                    @item.MedicationInfo.MedicationName
+                                </label>
+                            </div>
+                            <div class="form-inline col-xs-12 ">
+                                @if (item.PillStatus.HasValue == false)
+                                {
+                                    <p>Not Reported</p>
 
-                                                                }
-                                                                @if (item.PillStatus.HasValue && item.PillStatus.Value == true)
-                                                                {
-                                                                    <p>Success</p>
-                                                                }
-                                                                @if (item.PillStatus.HasValue && item.PillStatus.Value == false)
-                                                                {
-                                                                    <p>Skipped</p>
-                                                                   }
-                                                            </div>
-                                                            <div class="form-inline col-xs-12 ">
-                                                                @item.PillTimeStamp
-                                                            </div>
-                                                        </div>
+                                }
+                                @if (item.PillStatus.HasValue && item.PillStatus.Value == true)
+                                {
+                                    <p>Success</p>
+                                }
+                                @if (item.PillStatus.HasValue && item.PillStatus.Value == false)
+                                {
+                                    <p>Skipped</p>
+                                   }
+                            </div>
+                            <div class="form-inline col-xs-12 ">
+                                @item.PillTimeStamp
+                            </div>
+                        </div>
 
-                                                    </div>
-                                                    <div class="form-group row div-border">
-                                                    </div>
+                    </div>
+                    <div class="form-group row div-border">
+                    </div>
 
-                                                }
-                                            </div>
+                }
+            </div>
 
-                                        </div>
+        </div>*@
                                     </div>
 
                                 </div>

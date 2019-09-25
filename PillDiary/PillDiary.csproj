@@ -217,6 +217,7 @@
     <Content Include="Scripts\jquery\jquery-3.0.0.min.map" />
     <Content Include="Scripts\jquery\jquery-3.0.0.slim.min.map" />
     <Content Include="Views\PillDiary\Index.cshtml" />
+    <Content Include="Views\PillDiary\_pillHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
