@@ -1,0 +1,329 @@
+﻿@{
+    Layout = null;
+}
+@model PillDiary.Models.Patient
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1 ">
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/nav.css" rel="stylesheet" />
+    <link href="Content/app.css" rel="stylesheet" />
+    <script type="text/javascript" src="Scripts/jquery/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" src="Scripts/app.js"></script>
+    <script type="text/javascript" src="Scripts/moment/moment.js"></script>
+    <link href="Scripts/jquery-ui/jquery-ui.css" rel="stylesheet">
+    <script src="Scripts/jquery-ui/jquery-ui.js"></script>
+    <script src="Scripts/jquery/jquery.validate.min.js"></script>
+    <link href="Content/bootstrap-timepicker.min.css" rel="stylesheet">
+    <script src="Scripts/bootstrap/bootstrap-timepicker.min.js"></script>
+    <script type="text/javascript">
+        var validator;
+        var drugs = [
+            { id: 1, name: "MS Contin", units: "mg", baseDose: 15, frequency: "three times per day", frequencyValue: 3, islongActing: true },
+            { id: 2, name: "Kadian", units: "mg", baseDose: 10, frequency: "twice per day", frequencyValue: 2, islongActing: true },
+            { id: 3, name: "Avinza", units: "mg", baseDose: 30, frequency: "once per day", frequencyValue: 1, islongActing: true },
+            { id: 4, name: "Oxycontin", units: "mg", baseDose: 10, frequency: "three times per day", frequencyValue: 3, islongActing: true },
+            { id: 5, name: "Xtampza", units: "mg", baseDose: 9, frequency: "twice per day", frequencyValue: 2, islongActing: true },
+            { id: 6, name: "Fentanyl patch", units: "mcg", baseDose: 12.5, frequency: "mcg per hour", frequencyValue: 0, islongActing: true },
+            { id: 7, name: "Exalgo", units: "mg", baseDose: 8, frequency: "once per day", frequencyValue: 1, islongActing: true },
+            { id: 8, name: "Oxymorphone", units: "mg", baseDose: 5, frequency: "twice per day", frequencyValue: 2, islongActing: true },
+            { id: 9, name: "Methadone", units: "mg", baseDose: 2.5, frequency: "three times per day", frequencyValue: 3, islongActing: true },
+            { id: 10, name: "Levorphanol", units: "mg", baseDose: 2, frequency: "three times per day", frequencyValue: 3, islongActing: true },
+            { id: 11, name: "Morphine", units: "mg", baseDose: 15, frequency: "four times per day", frequencyValue: 4, islongActing: false },
+            { id: 12, name: "Oxycodone", units: "mg", baseDose: 5, frequency: "four times per day", frequencyValue: 4, islongActing: false },
+            { id: 13, name: "Hydromorphone", units: "mg", baseDose: 2, frequency: "four times per day", frequencyValue: 4, islongActing: false },
+            { id: 14, name: "Oxymorphone", units: "mg", baseDose: 5, frequency: "four times per day", frequencyValue: 4, islongActing: false },
+            { id: 15, name: "Hydrocodone", units: "mg", baseDose: 5, frequency: "four times per day", frequencyValue: 4, islongActing: false },
+            { id: 16, name: "Methadone", units: "mg", baseDose: 2.5, frequency: "four times per day", frequencyValue: 4, islongActing: false },
+            { id: 17, name: "Levorphanol", units: "mg", baseDose: 2, frequency: "four times per day", frequencyValue: 4, islongActing: false }
+        ];
+        var frequencyList = [{
+            "id": 0,
+            "text": "mcg per hour"
+        }, {
+            "id": 1,
+            "text": "mg once per day"
+        }, {
+            "id": 2,
+            "text": "mg twice per day"
+        }, {
+            "id": 3,
+            "text": "mg three times per day"
+        }, {
+            "id": 4,
+            "text": "mg four times per day"
+        }]
+        $(document).ready(function () {
+            var controls = $("input[name^='currTime']");
+            var len = controls.length;
+            for (i = 0; i < len; i++) {
+               $(controls[i]).timepicker({
+                    minuteStep: 1,
+                    showMeridian: false
+               }).on('changeTime.timepicker', function (e) {
+                   InsertPill(true);
+               });;
+            }
+
+            $("#btnTook").click(function () { tookPill(); });
+            $("#btnDintTake").click(function () { dintTake(); });
+
+            
+            function InsertPill(status) {
+                var symptomControl = $("input[name='radio1']:checked").val();
+                var currName = "currTime" + symptomControl;
+
+                var name = $("#" + currName).val();
+                var row = { PatientId: 1, MedicationId: symptomControl, PillTimeStamp: name, PillStatus: status };
+
+                $.ajax({
+                    type: "POST",
+                    url: "PillDiary/Insert",
+                    data: JSON.stringify(row),
+                    contentType: "application/json"
+                })
+                    .done(function (result) {
+                        //do something with the result
+                    });
+            }
+            function tookPill() {
+                var symptomControl = $("input[name='radio1']:checked").val();
+                $("#symptom" + symptomControl).show();
+                $("#skipped" + symptomControl).hide();
+                $("#medication" + symptomControl).removeClass("div-red");
+                InsertPill(true);
+            }
+            function dintTake() {
+                var medDiv = $("input[name='radio1']:checked").val();
+                $("#medication" + medDiv).addClass("div-red");
+                $("#symptom" + medDiv).hide();
+                $("#skipped" + medDiv).show();
+                InsertPill(false);
+            }
+        });
+
+    </script>
+    <style type="text/css">
+
+
+
+
+        .btn-orange {
+            background-color: #ff812d;
+        }
+
+            .btn-orange:hover {
+                background-color: #f26529;
+            }
+
+        .btn-gray {
+            background-color: #b6b6b6;
+        }
+
+            .btn-gray:hover {
+                background-color: #5e5e5e;
+            }
+
+        .btn-control {
+            font-weight: bold;
+            font-size: 14px;
+            height: 42px;
+            line-height: initial;
+            padding: 10px 28px;
+            border-radius: 4px;
+            color: #fff;
+            margin: 0;
+            border: 0;
+            display: inline-block;
+        }
+
+        .div-border {
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .bootstrap-timepicker-widget table td input {
+            width: 35px !important;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        .div-red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="home-bg box">
+        <div class="container-fluid home-bg remove-padding">
+            <!-- top nav -->
+
+            <div class="row home-content">
+
+
+                <!-- sidebar -->
+                <div class="col-md-2 col-sm-12 remove-padding ">
+
+                    <div class="home-sidebar">
+                        <nav class="navbar navbar-default">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#welcome-menu-collapse" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-menu">Menu</span>
+                                </button>-->
+
+                            </div>
+                            <div class="side-bar-button sb-logo hidden-sm">
+                                <a href="#">
+                                    <img src="content/images/logo.png">
+                                </a>
+                            </div>
+
+                        </nav>
+                    </div>
+                </div>
+                <!-- /sidebar -->
+                <!-- /top nav -->
+                <div class="main-nav hidden-xs hidden-sm" style="padding-left:20px">
+                    <label>
+                        @*MSK Pill Diary*@
+                    </label>
+                </div>
+                <!-- main right col -->
+                <div class="home-main col-md-12 col-sm-12 remove-padding">
+
+                    <div class="container" id="content">
+
+                        <form id="tapperForm">
+                            <div class="container-fluid" style="padding-top:50px;">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-lg-offset-3 col-md-offset-2" id="formDiv">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                Medications
+                                            </div>
+                                            <div class="panel-body">
+                                                @foreach (var item in Model.MedicationInfos)
+                                                {
+
+                                                    string fName = "medication" + item.MedicationId;
+                                                    string sName = "symptom" + item.MedicationId;
+                                                    string lName = "skipped" + item.MedicationId;
+                                                    string currName = "currTime" + item.MedicationId;
+
+                                                    <div class="form-group row">
+
+                                                        <div class="col-xs-1"><input type="radio" name="radio1" value="@item.MedicationId" /></div>
+                                                        <div class="col-xs-7" id="@fName">
+                                                            <div class="col-xs-12">
+                                                                <label class="control-label">
+                                                                    @item.MedicationInfo.MedicationName
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-inline col-xs-12 ">
+                                                                @item.MedicationInfo.Dosage @item.MedicationInfo.Frequency
+                                                            </div>
+                                                            <div class="form-inline col-xs-12 ">
+                                                                @item.MedicationInfo.AdditionalInformation
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-4">
+                                                            <div id="@sName" class="input-group bootstrap-timepicker timepicker" style="display:none">
+                                                                <input type="text"  class="form-control input-sm" name="@currName" id="@currName" maxlength="5" required>
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-time"></span>
+                                                                </span>
+                                                            </div>
+                                                            <div id="@lName" class="div-red" style="display:none">
+                                                                Skipped
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row div-border">
+                                                    </div>
+
+                                                }
+                                            </div>
+                                            <div class="panel-footer">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-12">
+                                                        <input type="button" id="btnTook" value="Took" class="btn-control btn-orange">
+                                                        <input type="button" id="btnDintTake" value="Didn't take" class="btn-control btn-gray">
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 col-sm-offset-1 col-lg-offset-3 col-md-offset-2" id="formDiv">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                Pill Intake History
+                                            </div>
+                                            <div class="panel-body">
+                                                @foreach (var item in Model.PillReportings)
+                                                {
+
+                                                    <div class="form-group row">
+
+                                                        <div class="col-xs-12">
+                                                            <div class="col-xs-12">
+                                                                <label class="control-label">
+                                                                    @item.MedicationInfo.MedicationName
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-inline col-xs-12 ">
+                                                                @if (item.PillStatus.HasValue == false)
+                                                                {
+                                                                    <p>Not Reported</p>
+
+                                                                }
+                                                                @if (item.PillStatus.HasValue && item.PillStatus.Value == true)
+                                                                {
+                                                                    <p>Success</p>
+                                                                }
+                                                                @if (item.PillStatus.HasValue && item.PillStatus.Value == false)
+                                                                {
+                                                                    <p>Skipped</p>
+                                                                   }
+                                                            </div>
+                                                            <div class="form-inline col-xs-12 ">
+                                                                @item.PillTimeStamp
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group row div-border">
+                                                    </div>
+
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- /padding -->
+                </div>
+                <!-- /main -->
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
